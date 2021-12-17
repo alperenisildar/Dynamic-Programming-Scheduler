@@ -7,9 +7,10 @@ import com.google.gson.GsonBuilder;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException {		//main for reading file, json to array operation,
-    																//array sorting, creating objects and write output
-    	
+
+	//main for reading file, json to array operation,
+    //array sorting, creating objects and write output 
+    public static void main(String[] args) throws IOException {		
     	try {
     		Assignment[] assignments = new Assignment[20];
         	ArrayList<Assignment> dynamicArray = new ArrayList<Assignment>();
@@ -30,8 +31,9 @@ public class Main {
     	}
 
     }
-    private static Assignment[] readFile(String filename) throws FileNotFoundException { //if file is not found, throws exception
-    	
+
+	//if file is not found, throws exception
+    private static Assignment[] readFile(String filename) throws FileNotFoundException { 
     	BufferedReader reader = null;
     	Assignment[] assignments = new Assignment[20];
     	try {
@@ -45,6 +47,7 @@ public class Main {
     	return assignments;
     }
 
+	//writing output
     private static void writeOutput(String filename, ArrayList<Assignment> arrayList) throws IOException {
     	try {
     		Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();

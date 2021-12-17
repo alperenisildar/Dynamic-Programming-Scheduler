@@ -5,7 +5,8 @@ public class Assignment implements Comparable<Assignment> {
     private int importance;
     private boolean maellard;
 
-    public Assignment(String name, String start, int duration, int importance, boolean maellard) throws IllegalArgumentException{ 		//constructor for Assignment class
+    //constructor for Assignment class
+    public Assignment(String name, String start, int duration, int importance, boolean maellard) throws IllegalArgumentException{ 		
 
     		this.name = name;
         	this.start = start;
@@ -18,7 +19,7 @@ public class Assignment implements Comparable<Assignment> {
     /*
         Getter methods
      */
-    public String getName() {																		//getter methods
+    public String getName() {
         return name;
     }
 
@@ -38,18 +39,27 @@ public class Assignment implements Comparable<Assignment> {
         return maellard;
     }
 
-    public String getFinishTime() {																	//duration is int so it should be calculated with another int
-        int hours = Integer.parseInt(start.split(":")[0]);											//hours is splitted by ':' and first one is hours of the given assignment and duration is added
+    //duration is int so it should be calculated with another int
+    public String getFinishTime() {		
+
+        //hours is splitted by ':' and first one is hours of the given assignment and duration is added
+        int hours = Integer.parseInt(start.split(":")[0]);											
         hours += duration;
-        String stringCheck = hours + ":" + start.split(":")[1];										//error handling if time type is not like "00:00"
+
+        //error handling if time type is not like "00:00"
+        String stringCheck = hours + ":" + start.split(":")[1];										
         if(stringCheck.length() < 5) stringCheck = "0" + stringCheck;
-        if(hours >= 24) return (hours-24) + ":" + start.split(":")[1];								//error handling for 24 hours clock system
+
+        //error handling for 24 hours clock system
+        if(hours >= 24) return (hours-24) + ":" + start.split(":")[1];								
         else return stringCheck;
 
     }
 
-    public double getWeight() {																		//method for calculating weight of the given assignment
-        double weight = 0.0;																		//it's equation is given in the assignment PDF
+    //method for calculating weight of the given assignment
+    public double getWeight() {		
+															
+        double weight = 0.0;			
     	if(maellard == true) {
         	weight = (double)(importance * 1001) / (double)duration;
         }
@@ -60,9 +70,9 @@ public class Assignment implements Comparable<Assignment> {
     	return weight;
     }
 
-
+    //compareTo override method for comparing finish times for Arrays.sort method
     @Override
-    public int compareTo(Assignment asg) {															//compareTo override method for comparing finish times for Arrays.sort method
+    public int compareTo(Assignment asg) {															
         if(this.getFinishTime().equals(asg.getFinishTime())) return 0;
         else if(this.getFinishTime().compareTo(asg.getFinishTime()) < 0) return -1;
         else return 1;
